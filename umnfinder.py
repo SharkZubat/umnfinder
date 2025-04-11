@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
+from tkinter import ttk
 import os
 
 # Dictionary of magic numbers to file types
@@ -62,20 +63,27 @@ file_paths = []
 root = tk.Tk()
 root.title("UMNFinder")
 
+# Use ttk for modern widgets
+style = ttk.Style()
+style.configure("TLabel", font=("Helvetica", 16, "bold"))
+
 # Create and place widgets
-title_label = tk.Label(root, text="UMNFinder", font=("Helvetica", 16, "bold"))
+title_label = ttk.Label(root, text="UMNFinder")
 title_label.pack(pady=10)
 
 files_listbox = tk.Listbox(root, width=50, height=10)
 files_listbox.pack(pady=10)
 
-add_files_button = tk.Button(root, text="Add Files", command=add_files)
-add_files_button.pack(pady=5)
+button_frame = ttk.Frame(root)
+button_frame.pack(pady=10)
 
-clear_files_button = tk.Button(root, text="Clear Files", command=clear_files)
-clear_files_button.pack(pady=5)
+add_files_button = ttk.Button(button_frame, text="Add Files", command=add_files)
+add_files_button.grid(row=0, column=0, padx=5)
 
-start_button = tk.Button(root, text="Start Locator", command=start_locator)
+clear_files_button = ttk.Button(button_frame, text="Clear Files", command=clear_files)
+clear_files_button.grid(row=0, column=1, padx=5)
+
+start_button = ttk.Button(root, text="Start Locator", command=start_locator)
 start_button.pack(pady=20)
 
 # Run the Tkinter event loop
